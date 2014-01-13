@@ -20,8 +20,7 @@ public class ContentActivity extends Activity {
     setContentView(R.layout.activity_content);
     TextView textView = (TextView)findViewById(R.id.ttt);
     ShotsData getData = new ShotsData(this);
-    //Log.i("message", getData.getShots(DribbbleAPI.SHOTS_POPULAR));
-    textView.setText(getData.getShots(DribbbleAPI.SHOTS_POPULAR));
+    getData.getShots(DribbbleAPI.SHOTS_POPULAR, textView);
   }
 
 }

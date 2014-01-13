@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,23 +18,21 @@ public class ShotsData {
   private Context context;
   private String url;
   private RequestQueue mRequestQueue;
-  StringBuffer sb;
+  String sb;
   
   public ShotsData (Context mContext) {
     context = mContext;
     mRequestQueue = Volley.newRequestQueue(mContext);
   }
   
-  public String getShots(String url) {
+  public String getShots(String url, final TextView text) {
     JsonObjectRequest jsonStringRequest = new JsonObjectRequest(
         Request.Method.GET, url, null,
         new Response.Listener<JSONObject>() {
 
           @Override
           public void onResponse(JSONObject arg0) {
-            sb = new StringBuffer();
-            sb.append(arg0.toString());
-            Log.i("message", sb.toString());
+            text.setText(arg0.toString());
           }     
         }, 
         new Response.ErrorListener() {
@@ -43,8 +42,8 @@ public class ShotsData {
             Log.i("Volley error", arg0.getMessage());  
           }      
         });
-    mRequestQueue.add(jsonStringRequest);
-    return sb.toString(); 
+    mRequestQueue.add(jsonStringRequest); 
+    return null;
   }
 
 }
