@@ -83,6 +83,7 @@ public class ContentShotsAdapter extends BaseAdapter{
     public TextView shotsLikes;
     public TextView shotsPlayer;
     public ImageView button;
+    ;
   }
 
 }
