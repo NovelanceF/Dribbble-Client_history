@@ -40,6 +40,7 @@ public class ShotsData {
           @Override
           public void onResponse(JSONObject arg0) {
             // text.setText(arg0.toString());
+            ;
           }
         }, new Response.ErrorListener() {
 
