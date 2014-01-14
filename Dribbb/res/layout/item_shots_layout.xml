@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp" >
+
+    <ImageView
+        android:id="@+id/hhhhh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hhhhh"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/itembackground" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/shots_item_image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#ffd4d4d4" 
+                android:padding="1dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/shots_item_image"
+                android:layout_alignRight="@+id/shots_item_image"
+                android:layout_alignBottom="@+id/shots_item_image"
+                android:background="#aa000000"
+                android:paddingTop="4dp">
+
+                <TextView
+                    android:id="@+id/shots_item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="30"
+                    android:paddingLeft="4dp"
+                    android:text="TextView"
+                    android:textColor="#ffffffff" />
+
+                <TextView
+                    android:id="@+id/shots_item_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shots_item_title"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="4dp"
+                    android:text="TextView"
+                    android:textColor="#ffa3a3a3"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/views"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/shots_item_views"
+                    android:paddingRight="5dp"
+                    android:src="@drawable/ic_view" />
+
+                <TextView
+                    android:id="@+id/shots_item_views"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/likes"
+                    android:paddingRight="10dp"
+                    android:textSize="12sp"
+                    android:text="TextView"
+                    android:textColor="#ffa3a3a3" />
+
+                <ImageView
+                    android:id="@+id/likes"
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/shots_item_likes"
+                    android:paddingRight="5dp"
+                    android:src="@drawable/ic_like" />
+
+                <TextView
+                    android:id="@+id/shots_item_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="3dp"
+                    android:textSize="12sp"
+                    android:text="TextView"
+                    android:textColor="#ffa3a3a3" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+</RelativeLayout>

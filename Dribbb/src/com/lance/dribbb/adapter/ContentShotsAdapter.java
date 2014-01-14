@@ -3,28 +3,42 @@ package com.lance.dribbb.adapter;
 import java.util.List;
 import java.util.Map;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.lance.dribbb.R;
+import com.lance.dribbb.activites.content.ContentActivity;
+import com.lance.dribbb.application.AppData;
+import com.lance.dribbb.network.BitmapLruCache;
 
 public class ContentShotsAdapter extends BaseAdapter{
   
-  Context mContext;
-  List<Map<String, Object>> mList;
-  LayoutInflater mInflater;
+  private Activity mActivity;
+  private List<Map<String, Object>> mList;
+  private LayoutInflater mInflater;
+  private RequestQueue mRequestQueue;
+  private ImageLoader mImageLoader;
   
-  public ContentShotsAdapter(Context c, List<Map<String, Object>> list) {
-    this.mContext = c;
+  public ContentShotsAdapter(Activity c, List<Map<String, Object>> list) {
+    this.mActivity = c;
     mList = list;
     mInflater = LayoutInflater.from(c);
+    mRequestQueue = Volley.newRequestQueue(mActivity);
     
+    mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache());
   }
 
   @Override
@@ -68,6 +82,8 @@ public class ContentShotsAdapter extends BaseAdapter{
       holder.button.setPadding(0, 0, 0, 0);
     }
     
+    holder.shotsImage.setLayoutParams(getParams(holder));
+    holder.shotsImage.setImageUrl((String) mList.get(position).get("image_teaser_url"), mImageLoader);
     holder.shotsTitle.setText(mList.get(position).get("title").toString());
     holder.shotsPlayer.setText(mList.get(position).get("player_name").toString());
     holder.shotsViews.setText(mList.get(position).get("views_count").toString());
@@ -83,6 +99,15 @@ public class ContentShotsAdapter extends BaseAdapter{
     public TextView shotsLikes;
     public TextView shotsPlayer;
     public ImageView button;
+  }
+  
+  private android.view.ViewGroup.LayoutParams getParams(Holder holder){
+    WindowManager manager = mActivity.getWindowManager();
+    Display display = manager.getDefaultDisplay();
+    android.view.ViewGroup.LayoutParams params = holder.shotsImage.getLayoutParams();
+    params.width = display.getWidth() - display.getWidth() * 1/18;
+    params.height = params.width * 3/4;
+    return params;
   }
 
 }

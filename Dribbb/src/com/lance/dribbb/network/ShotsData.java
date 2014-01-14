@@ -9,30 +9,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.lance.dribbb.activites.content.ContentActivity;
 import com.lance.dribbb.adapter.ContentShotsAdapter;
+import com.lance.dribbb.application.AppData;
 
 public class ShotsData {
 
-  private Context context;
+  private Activity mActivity;
   private String url;
   private RequestQueue mRequestQueue;
-  String sb;
 
-  public ShotsData(Context mContext) {
-    context = mContext;
-    mRequestQueue = Volley.newRequestQueue(mContext);
+  public ShotsData(Activity a) {
+    mActivity = a;
+    mRequestQueue = Volley.newRequestQueue(a);
   }
 
   public void getShots(String url, final PullToRefreshGridView gridView) {
@@ -42,7 +44,7 @@ public class ShotsData {
           @Override
           public void onResponse(JSONObject arg0) {
             try {
-              ContentShotsAdapter adapter = new ContentShotsAdapter(context, initShotsList(arg0));
+              ContentShotsAdapter adapter = new ContentShotsAdapter(mActivity, initShotsList(arg0));
               gridView.setAdapter(adapter);
             } catch (JSONException e) {
               e.printStackTrace();

@@ -23,7 +23,7 @@ public class ContentActivity extends Activity {
     setContentView(R.layout.activity_content);
     
     shotsContent = (PullToRefreshGridView)findViewById(R.id.content_shots);
-    ShotsData data = new ShotsData(this);
+    ShotsData data = new ShotsData(ContentActivity.this);
     data.getShots(DribbbleAPI.SHOTS_POPULAR, shotsContent);
     
   }
