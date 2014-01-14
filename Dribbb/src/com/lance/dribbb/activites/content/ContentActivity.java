@@ -3,8 +3,8 @@ package com.lance.dribbb.activites.content;
 import com.lance.dribbb.R;
 import com.lance.dribbb.R.layout;
 import com.lance.dribbb.R.menu;
-import com.lance.dribbb.activites.network.DribbbleAPI;
-import com.lance.dribbb.activites.network.ShotsData;
+import com.lance.dribbb.network.DribbbleAPI;
+import com.lance.dribbb.network.ShotsData;
 
 import android.os.Bundle;
 import android.app.Activity;

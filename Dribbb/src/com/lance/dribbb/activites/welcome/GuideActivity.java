@@ -24,8 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lance.dribbb.R;
-import com.lance.dribbb.activites.animation.DepthPageTransformer;
 import com.lance.dribbb.activites.content.ContentActivity;
+import com.lance.dribbb.animation.DepthPageTransformer;
 
 public class GuideActivity extends Activity implements OnPageChangeListener {
 
