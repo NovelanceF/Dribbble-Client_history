@@ -49,7 +49,7 @@ public class ContentShotsAdapter extends BaseAdapter{
       convertView = mInflater.inflate(R.layout.item_shots_layout, null);
       holder = new Holder();
       holder.shotsImage = (NetworkImageView)convertView.findViewById(R.id.shots_item_image);
-      holder.shotsTitle = (TextView)convertView.findViewById(R.id.shots_item_title);
+      holder.shotsPlayer = (TextView)convertView.findViewById(R.id.shots_item_player);
       holder.shotsViews = (TextView)convertView.findViewById(R.id.shots_item_views);
       holder.shotsTitle = (TextView)convertView.findViewById(R.id.shots_item_title);
       holder.shotsLikes = (TextView)convertView.findViewById(R.id.shots_item_likes);
@@ -83,7 +83,6 @@ public class ContentShotsAdapter extends BaseAdapter{
     public TextView shotsLikes;
     public TextView shotsPlayer;
     public ImageView button;
-    ;
   }
 
 }

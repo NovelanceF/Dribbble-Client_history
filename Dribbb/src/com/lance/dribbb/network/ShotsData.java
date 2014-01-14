@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.lance.dribbb.adapter.ContentShotsAdapter;
 
 public class ShotsData {
 
@@ -33,14 +35,18 @@ public class ShotsData {
     mRequestQueue = Volley.newRequestQueue(mContext);
   }
 
-  public void getShots(String url, final TextView text) {
+  public void getShots(String url, final PullToRefreshGridView gridView) {
     JsonObjectRequest jsonStringRequest = new JsonObjectRequest(
         Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
           @Override
           public void onResponse(JSONObject arg0) {
-            // text.setText(arg0.toString());
-            ;
+            try {
+              ContentShotsAdapter adapter = new ContentShotsAdapter(context, initShotsList(arg0));
+              gridView.setAdapter(adapter);
+            } catch (JSONException e) {
+              e.printStackTrace();
+            }
           }
         }, new Response.ErrorListener() {
 
@@ -68,8 +74,8 @@ public class ShotsData {
       map.put("likes_count", array.getJSONObject(i).getString("likes_count"));
       
       //player
-      map.put("player_name",array.getJSONObject(i).getJSONObject("player").getString("name"));
-      map.put("player_avatar_url", array.getJSONObject(i).getJSONObject("player").getString("avatar_url"));
+      map.put("player_name", array.getJSONObject(i).getJSONObject("player").getString("name").toString());
+      map.put("player_avatar_url", array.getJSONObject(i).getJSONObject("player").getString("avatar_url").toString());
       list.add(map);
     }
     return list;
