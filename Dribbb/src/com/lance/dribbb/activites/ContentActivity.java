@@ -8,9 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.StaticLayout;
 
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.lance.dribbb.R;
 import com.lance.dribbb.fragment.content.ShotsFragment;
+import com.lance.dribbb.network.DribbbleAPI;
+import com.lance.dribbb.network.ShotsData;
 
 public class ContentActivity extends FragmentActivity implements OnPageChangeListener {
   
@@ -24,6 +28,7 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
     contentPager.setOnPageChangeListener(this);
     mPagerAdapter adapter = new mPagerAdapter(getSupportFragmentManager());
     contentPager.setAdapter(adapter);
+    contentPager.setOffscreenPageLimit(2);
   }
   
   private class mPagerAdapter extends FragmentStatePagerAdapter {

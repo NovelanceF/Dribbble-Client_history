@@ -34,6 +34,7 @@ public class ShotsData {
   private String url;
   private RequestQueue mRequestQueue;
   private List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+  private ContentShotsAdapter adapter;
 
   public ShotsData(Activity a) {
     mActivity = a;
@@ -47,7 +48,8 @@ public class ShotsData {
           @Override
           public void onResponse(JSONObject arg0) {
             try {
-              ContentShotsAdapter adapter = new ContentShotsAdapter(mActivity, initShotsList(arg0));
+              initShotsList(arg0);
+              adapter = new ContentShotsAdapter(mActivity, list);
               gridView.setAdapter(adapter);
             } catch (JSONException e) {
               e.printStackTrace();
@@ -57,13 +59,38 @@ public class ShotsData {
 
           @Override
           public void onErrorResponse(VolleyError arg0) {
-            Log.i("Volley error", arg0.getMessage());
+            //Log.i("Volley error", arg0.getMessage());
           }
         });
     mRequestQueue.add(jsonStringRequest);
   }
+  
+  public void getShotsRefresh(String url, final PullToRefreshGridView gridView) {
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, 
+        new Response.Listener<JSONObject>() {
 
-  private List<Map<String, Object>> initShotsList(JSONObject jsonObject) throws JSONException {
+          @Override
+          public void onResponse(JSONObject arg0) {
+            try {
+              initShotsList(arg0);
+              adapter.notifyDataSetChanged();
+              gridView.onRefreshComplete();
+              Log.i("refresh","data");
+            } catch (JSONException e) {
+              e.printStackTrace();
+            }
+          }
+        }, new Response.ErrorListener() {
+
+          @Override
+          public void onErrorResponse(VolleyError arg0) {
+            
+          }
+        });
+    mRequestQueue.add(jsonObjectRequest);
+  }
+
+  private void initShotsList(JSONObject jsonObject) throws JSONException {
     int respond_count = jsonObject.getInt("per_page");
     JSONArray array = jsonObject.getJSONArray("shots");
     for (int i = 0; i < respond_count; i++) {
@@ -82,6 +109,5 @@ public class ShotsData {
       map.put("player_avatar_url", array.getJSONObject(i).getJSONObject("player").getString("avatar_url").toString());
       list.add(map);
     }
-    return list;
   }
 }

@@ -1,9 +1,9 @@
 package com.lance.dribbb.fragment.content;
 
-import android.R.integer;
-import android.support.v4.app.Fragment;
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,8 @@ public class ShotsFragment extends Fragment implements OnRefreshListener<GridVie
   
   private int m;
   private ShotsData data;
-  private static int page = 1;
+  private static int pageDebut = 1, pagePopular = 1, pageEveryone = 1;
+  private static String currentUrl = null;
   
   public ShotsFragment(int index, Activity a) {
     m = index;
@@ -35,7 +36,7 @@ public class ShotsFragment extends Fragment implements OnRefreshListener<GridVie
     PullToRefreshGridView gridView = (PullToRefreshGridView)rootView.findViewById(R.id.shots_grid);
     gridView.setMode(Mode.PULL_FROM_END);
     gridView.setOnRefreshListener(this);
-    initGridView(m, page, gridView);
+    initGridView(m, 1, gridView);
     return rootView;
   }
   
@@ -48,11 +49,52 @@ public class ShotsFragment extends Fragment implements OnRefreshListener<GridVie
       data.getShots(DribbbleAPI.SHOTS_EVERYONE + page, gridView);
     }
   }
+  
+  private int getCurrentPage(){
+    if(m == 0){
+      currentUrl = DribbbleAPI.SHOTS_DEBUTS;
+      return ++ pageDebut;
+    } else if (m == 1) {
+      currentUrl = DribbbleAPI.SHOTS_EVERYONE;
+      return ++ pagePopular;
+    } else {
+      currentUrl = DribbbleAPI.SHOTS_POPULAR;
+      return ++ pageEveryone;
+    }
+  }
 
   @Override
   public void onRefresh(PullToRefreshBase<GridView> refreshView) {
-    //++page;
-    //initGridView(m, page, (PullToRefreshGridView) refreshView);
+    new GetDataTask((PullToRefreshGridView)refreshView, getCurrentPage()).execute();
+  }
+  
+  private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+    
+    PullToRefreshGridView pullToRefreshGridView;
+    int page = 1;
+    
+    public GetDataTask(PullToRefreshGridView gridView, int p) {
+      pullToRefreshGridView = gridView;
+      page = p; 
+    }
+ 
+    @Override
+    protected void onPostExecute(String[] result) {
+        pullToRefreshGridView.onRefreshComplete();
+        super.onPostExecute(result);
+    }
+
+    @Override
+    protected String[] doInBackground(Void... params) {
+      data.getShotsRefresh(currentUrl + page, pullToRefreshGridView);
+      return null;
+    }
+  }
+  
+  @Override
+  public void onStop() {
+    pageDebut = pageEveryone = pagePopular = 1;
+    super.onStop();
   }
 
 }
