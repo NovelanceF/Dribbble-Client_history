@@ -9,6 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.bool;
+import android.R.integer;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -22,7 +24,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
-import com.lance.dribbb.activites.content.ContentActivity;
+import com.lance.dribbb.activites.ContentActivity;
 import com.lance.dribbb.adapter.ContentShotsAdapter;
 import com.lance.dribbb.application.AppData;
 
@@ -31,6 +33,7 @@ public class ShotsData {
   private Activity mActivity;
   private String url;
   private RequestQueue mRequestQueue;
+  private List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 
   public ShotsData(Activity a) {
     mActivity = a;
@@ -61,7 +64,6 @@ public class ShotsData {
   }
 
   private List<Map<String, Object>> initShotsList(JSONObject jsonObject) throws JSONException {
-    List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
     int respond_count = jsonObject.getInt("per_page");
     JSONArray array = jsonObject.getJSONArray("shots");
     for (int i = 0; i < respond_count; i++) {

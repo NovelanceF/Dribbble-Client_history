@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.lance.dribbb.R;
-import com.lance.dribbb.activites.content.ContentActivity;
+import com.lance.dribbb.activites.ContentActivity;
 
 public class WelcomeActivity extends Activity {
 	

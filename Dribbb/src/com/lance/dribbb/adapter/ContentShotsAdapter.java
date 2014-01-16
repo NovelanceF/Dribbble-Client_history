@@ -20,7 +20,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.lance.dribbb.R;
-import com.lance.dribbb.activites.content.ContentActivity;
+import com.lance.dribbb.activites.ContentActivity;
 import com.lance.dribbb.application.AppData;
 import com.lance.dribbb.network.BitmapLruCache;
 
@@ -76,7 +76,7 @@ public class ContentShotsAdapter extends BaseAdapter{
     if(position == 0) {
       holder.button = (ImageView)convertView.findViewById(R.id.hhhhh);
       holder.button.setVisibility(View.VISIBLE);
-      holder.button.setPadding(0, 100, 0, 0);
+      holder.button.setPadding(0, 0, 0, 0);
     } else {
       holder.button = (ImageView)convertView.findViewById(R.id.hhhhh);
       holder.button.setPadding(0, 0, 0, 0);
