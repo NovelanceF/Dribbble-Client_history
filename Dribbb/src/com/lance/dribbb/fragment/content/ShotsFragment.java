@@ -77,12 +77,6 @@ public class ShotsFragment extends Fragment implements OnRefreshListener<GridVie
       pullToRefreshGridView = gridView;
       page = p; 
     }
- 
-    @Override
-    protected void onPostExecute(String[] result) {
-        pullToRefreshGridView.onRefreshComplete();
-        super.onPostExecute(result);
-    }
 
     @Override
     protected String[] doInBackground(Void... params) {

@@ -59,7 +59,6 @@ public class ShotsData {
 
           @Override
           public void onErrorResponse(VolleyError arg0) {
-            //Log.i("Volley error", arg0.getMessage());
           }
         });
     mRequestQueue.add(jsonStringRequest);
