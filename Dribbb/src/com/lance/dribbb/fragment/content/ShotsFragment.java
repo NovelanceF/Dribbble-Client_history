@@ -43,7 +43,7 @@ public class ShotsFragment extends Fragment implements OnRefreshListener<GridVie
   private void initGridView(int index, int page, PullToRefreshGridView gridView) {
     if(index == 0){
       data.getShots(DribbbleAPI.SHOTS_DEBUTS + page, gridView);
-    } else if (index == 2) {
+    } else if (index == 1) {
       data.getShots(DribbbleAPI.SHOTS_POPULAR + page, gridView);
     } else {
       data.getShots(DribbbleAPI.SHOTS_EVERYONE + page, gridView);
