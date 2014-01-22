@@ -9,62 +9,33 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.bool;
-import android.R.integer;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.util.Log;
+import android.widget.GridView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
-import com.lance.dribbb.activites.ContentActivity;
 import com.lance.dribbb.adapter.ContentShotsAdapter;
-import com.lance.dribbb.application.AppData;
+import com.lance.dribbb.views.FooterState;
 
 public class ShotsData {
 
-  private Activity mActivity;
-  private String url;
   private RequestQueue mRequestQueue;
   private List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-  private ContentShotsAdapter adapter;
-
+  
   public ShotsData(Activity a) {
-    mActivity = a;
     mRequestQueue = Volley.newRequestQueue(a);
   }
-
-  public void getShots(String url, final PullToRefreshGridView gridView) {
-    JsonObjectRequest jsonStringRequest = new JsonObjectRequest(
-        Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-          @Override
-          public void onResponse(JSONObject arg0) {
-            try {
-              initShotsList(arg0);
-              adapter = new ContentShotsAdapter(mActivity, list);
-              gridView.setAdapter(adapter);
-            } catch (JSONException e) {
-              e.printStackTrace();
-            }
-          }
-        }, new Response.ErrorListener() {
-
-          @Override
-          public void onErrorResponse(VolleyError arg0) {
-          }
-        });
-    mRequestQueue.add(jsonStringRequest);
+  
+  public List<Map<String, Object>> getList() {
+    return list;
   }
   
-  public void getShotsRefresh(String url, final PullToRefreshGridView gridView) {
+  public void getShotsRefresh(String url, final GridView gridView, final ContentShotsAdapter adapter, final FooterState f) {
     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, 
         new Response.Listener<JSONObject>() {
 
@@ -73,8 +44,7 @@ public class ShotsData {
             try {
               initShotsList(arg0);
               adapter.notifyDataSetChanged();
-              gridView.onRefreshComplete();
-              Log.i("refresh","data");
+              f.setState(FooterState.State.Idle);
             } catch (JSONException e) {
               e.printStackTrace();
             }

@@ -5,12 +5,13 @@
     android:background="#ff383838"
     android:orientation="vertical" >
 
-    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+    <GridView
         android:id="@+id/shots_grid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:divider="#00000000"
         android:layoutAnimation="@anim/list_controller"
-        android:scrollbars="none" />
+        android:scrollbars="vertical"
+        android:numColumns="3"/>
 
 </RelativeLayout>

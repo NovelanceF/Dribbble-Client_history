@@ -3,9 +3,6 @@ package com.lance.dribbb.application;
 import android.app.Application;
 import android.content.Context;
 
-/**
- * Created by Issac on 7/18/13.
- */
 public class AppData extends Application {
     private static Context sContext;
 

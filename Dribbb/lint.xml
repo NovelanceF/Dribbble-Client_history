@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="NewApi">
+        <ignore path="src/com/lance/dribbb/views/Footer.java" />
+    </issue>
     <issue id="ValidFragment">
         <ignore path="src/com/lance/dribbb/fragment/content/ShotsFragment.java" />
+        <ignore path="src/com/lance/dribbb/fragment/shots/ShotsFragment.java" />
     </issue>
 </lint>

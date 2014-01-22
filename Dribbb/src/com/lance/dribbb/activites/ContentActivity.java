@@ -21,8 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lance.dribbb.R;
-import com.lance.dribbb.fragment.content.Drawer;
-import com.lance.dribbb.fragment.content.ShotsFragment;
+import com.lance.dribbb.animation.DepthPageTransformer;
+import com.lance.dribbb.animation.ZoomOutPageTransformer;
+import com.lance.dribbb.fragment.shots.Drawer;
+import com.lance.dribbb.fragment.shots.ShotsFragment;
 
 public class ContentActivity extends FragmentActivity implements OnPageChangeListener {
   
@@ -92,6 +94,7 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
     mPagerAdapter adapter = new mPagerAdapter(getSupportFragmentManager());
     contentPager.setAdapter(adapter);
     contentPager.setOffscreenPageLimit(2);
+    contentPager.setPageTransformer(true, new ZoomOutPageTransformer());
   }
   
   private class mPagerAdapter extends FragmentStatePagerAdapter {

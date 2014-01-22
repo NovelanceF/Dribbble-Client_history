@@ -3,6 +3,8 @@ package com.lance.dribbb.adapter;
 import java.util.List;
 import java.util.Map;
 
+import javax.crypto.interfaces.PBEKey;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -63,50 +66,45 @@ public class ContentShotsAdapter extends BaseAdapter{
       convertView = mInflater.inflate(R.layout.item_shots_layout, null);
       holder = new Holder();
       holder.shotsImage = (NetworkImageView)convertView.findViewById(R.id.shots_item_image);
-      holder.shotsPlayer = (TextView)convertView.findViewById(R.id.shots_item_player);
-      holder.shotsViews = (TextView)convertView.findViewById(R.id.shots_item_views);
-      holder.shotsTitle = (TextView)convertView.findViewById(R.id.shots_item_title);
-      holder.shotsLikes = (TextView)convertView.findViewById(R.id.shots_item_likes);
+      holder.pb = (ProgressBar)convertView.findViewById(R.id.gird_loading);
+      holder.button = (ImageView)convertView.findViewById(R.id.hhhhh);
       
       convertView.setTag(holder);
     } else {
       holder = (Holder)convertView.getTag();
     }
     
-    if(position == 0) {
-      holder.button = (ImageView)convertView.findViewById(R.id.hhhhh);
+    if(position == 0 || position == 1 || position == 2) {
       holder.button.setVisibility(View.VISIBLE);
-      holder.button.setPadding(0, 75, 0, 0);
+      holder.button.setPadding(0, 133, 0, 0);
     } else {
-      holder.button = (ImageView)convertView.findViewById(R.id.hhhhh);
       holder.button.setPadding(0, 0, 0, 0);
+    }
+    
+    if(position == mList.size() - 3 || position == mList.size() - 2 || position == mList.size() - 1) {
+      holder.pb.setVisibility(View.VISIBLE);
+    } else {
+      holder.pb.setVisibility(View.GONE);
     }
     
     holder.shotsImage.setLayoutParams(getParams(holder));
     holder.shotsImage.setImageUrl((String) mList.get(position).get("image_teaser_url"), mImageLoader);
-    holder.shotsTitle.setText(mList.get(position).get("title").toString());
-    holder.shotsPlayer.setText(mList.get(position).get("player_name").toString());
-    holder.shotsViews.setText(mList.get(position).get("views_count").toString());
-    holder.shotsLikes.setText(mList.get(position).get("likes_count").toString());
     
     return convertView;
   }
   
   private static class Holder {
     public NetworkImageView shotsImage;
-    public TextView shotsTitle;
-    public TextView shotsViews;
-    public TextView shotsLikes;
-    public TextView shotsPlayer;
     public ImageView button;
+    public ProgressBar pb;
   }
   
   private android.view.ViewGroup.LayoutParams getParams(Holder holder){
     WindowManager manager = mActivity.getWindowManager();
     Display display = manager.getDefaultDisplay();
     android.view.ViewGroup.LayoutParams params = holder.shotsImage.getLayoutParams();
-    params.width = display.getWidth() - display.getWidth() * 1/18;
-    params.height = params.width * 3/4;
+    params.width = display.getWidth() / 3;
+    params.height = params.width*3/4;
     return params;
   }
 
