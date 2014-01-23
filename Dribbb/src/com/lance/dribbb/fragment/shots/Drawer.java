@@ -19,6 +19,8 @@ public class Drawer extends Fragment {
     
     DrawerAdapter adapter = new DrawerAdapter(getActivity(), DrawerItems.initDrawerItems());
     listView.setAdapter(adapter);
+    
+    
     return rootView;
   }
 

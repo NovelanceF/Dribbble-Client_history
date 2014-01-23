@@ -130,7 +130,7 @@ containing a value of this type.
     public static final class drawable {
         public static final int actionbar_back=0x7f020010;
         public static final int actionbar_tab_indicator=0x7f020000;
-        public static final int background_tab=0x7f020001;
+        public static final int background_tabs=0x7f020001;
         public static final int default_ptr_flip=0x7f020002;
         public static final int default_ptr_rotate=0x7f020003;
         public static final int drawer_shadow=0x7f020004;
@@ -153,29 +153,30 @@ containing a value of this type.
         public static final int welcomeback=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0016;
+        public static final int action_settings=0x7f0a0017;
         public static final int content_decorations=0x7f0a0002;
         public static final int content_drawer=0x7f0a0000;
         public static final int content_pager=0x7f0a0001;
-        public static final int drawer_list=0x7f0a0006;
-        public static final int first_image=0x7f0a0013;
-        public static final int forth_image=0x7f0a0011;
-        public static final int gird_loading=0x7f0a000b;
-        public static final int hhhhh=0x7f0a0009;
-        public static final int item_text=0x7f0a0008;
-        public static final int item_user_avatar=0x7f0a000c;
-        public static final int item_user_info=0x7f0a000d;
-        public static final int item_user_info2=0x7f0a000e;
-        public static final int left_drawer=0x7f0a0003;
-        public static final int mstart=0x7f0a0012;
-        public static final int page_num=0x7f0a0005;
-        public static final int progressBar=0x7f0a000f;
-        public static final int second_image=0x7f0a0015;
-        public static final int shots_grid=0x7f0a0007;
-        public static final int shots_item_image=0x7f0a000a;
-        public static final int textView=0x7f0a0010;
-        public static final int third_image=0x7f0a0014;
-        public static final int viewpager=0x7f0a0004;
+        public static final int drawer_list=0x7f0a0007;
+        public static final int first_image=0x7f0a0014;
+        public static final int forth_image=0x7f0a0012;
+        public static final int gird_loading=0x7f0a000c;
+        public static final int hhhhh=0x7f0a000a;
+        public static final int item_text=0x7f0a0009;
+        public static final int item_user_avatar=0x7f0a000d;
+        public static final int item_user_info=0x7f0a000e;
+        public static final int item_user_info2=0x7f0a000f;
+        public static final int left_drawer=0x7f0a0004;
+        public static final int mstart=0x7f0a0013;
+        public static final int page_num=0x7f0a0006;
+        public static final int progressBar=0x7f0a0010;
+        public static final int second_image=0x7f0a0016;
+        public static final int shots_grid=0x7f0a0008;
+        public static final int shots_item_image=0x7f0a000b;
+        public static final int tabs=0x7f0a0003;
+        public static final int textView=0x7f0a0011;
+        public static final int third_image=0x7f0a0015;
+        public static final int viewpager=0x7f0a0005;
     }
     public static final class layout {
         public static final int actioncar_view=0x7f030000;
