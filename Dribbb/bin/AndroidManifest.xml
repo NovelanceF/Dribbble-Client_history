@@ -29,8 +29,7 @@
         </activity>
         <activity
             android:name="com.lance.dribbb.activites.ContentActivity"
-            android:label="@string/title_activity_content"
-            android:theme="@android:style/Theme.Holo" >
+            android:label="@string/title_activity_content" >
         </activity>
         <activity
             android:name="com.lance.dribbb.activites.welcome.GuideActivity"

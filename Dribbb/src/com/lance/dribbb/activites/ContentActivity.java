@@ -1,6 +1,8 @@
 package com.lance.dribbb.activites;
 
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,19 +20,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lance.dribbb.R;
-import com.lance.dribbb.animation.DepthPageTransformer;
 import com.lance.dribbb.animation.ZoomOutPageTransformer;
 import com.lance.dribbb.fragment.shots.Drawer;
 import com.lance.dribbb.fragment.shots.ShotsFragment;
 
-public class ContentActivity extends FragmentActivity implements OnPageChangeListener {
+public class ContentActivity extends FragmentActivity implements OnPageChangeListener, ActionBar.TabListener {
   
   private ViewPager contentPager;
   private ActionBarDrawerToggle mDrawerToggle;
   private DrawerLayout mDrawerLayout;
+  private mPagerAdapter adapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
   private void setPager() {
     contentPager = (ViewPager)findViewById(R.id.content_pager);
     contentPager.setOnPageChangeListener(this);
-    mPagerAdapter adapter = new mPagerAdapter(getSupportFragmentManager());
+    adapter = new mPagerAdapter(getSupportFragmentManager());
     contentPager.setAdapter(adapter);
     contentPager.setOffscreenPageLimit(2);
     contentPager.setPageTransformer(true, new ZoomOutPageTransformer());
@@ -113,6 +114,17 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
       return 3;
     }
     
+    @Override
+    public CharSequence getPageTitle(int position) {
+      if(position == 0) {
+        return "Debut";
+      } else if (position == 1) {
+        return "Popular";
+      } else {
+        return "Everyone";
+      }
+    }
+    
   }
 
   @Override
@@ -126,14 +138,14 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
   }
 
   @Override
-  public void onPageSelected(int arg0) {
-    
+  public void onPageSelected(int position) {
+    getActionBar().setSelectedNavigationItem(position);
   }
   
   private void setActionBarStyle() {
     this.getActionBar().setTitle("dribbble");    
     getActionBar().setBackgroundDrawable(this.getBaseContext().getResources().getDrawable(R.drawable.actionbar_back));
-    getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+    getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
     TextView textView = (TextView) findViewById(titleId);
     textView.setTypeface(Typeface.createFromAsset(getAssets(), "font/Wendy.ttf"));
@@ -141,6 +153,25 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
     textView.setTextSize(32); 
     getActionBar().setDisplayHomeAsUpEnabled(true);
     getActionBar().setHomeButtonEnabled(true);
+    
+    for (int i = 0; i < adapter.getCount(); i++) {
+      getActionBar().addTab( getActionBar().newTab().setText(adapter.getPageTitle(i)).setTabListener(this));
+    }
+  }
+
+  @Override
+  public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    
+  }
+
+  @Override
+  public void onTabSelected(Tab tab, FragmentTransaction ft) {
+    contentPager.setCurrentItem(tab.getPosition());
+  }
+
+  @Override
+  public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    
   }
 
 }

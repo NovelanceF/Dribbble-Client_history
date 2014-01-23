@@ -35,7 +35,7 @@ public class ShotsData {
     return list;
   }
   
-  public void getShotsRefresh(String url, final GridView gridView, final ContentShotsAdapter adapter, final FooterState f) {
+  public void getShotsRefresh(String url, final ContentShotsAdapter adapter, final FooterState f) {
     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, 
         new Response.Listener<JSONObject>() {
 

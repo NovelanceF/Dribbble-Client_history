@@ -76,7 +76,7 @@ public class ContentShotsAdapter extends BaseAdapter{
     
     if(position == 0 || position == 1 || position == 2) {
       holder.button.setVisibility(View.VISIBLE);
-      holder.button.setPadding(0, 133, 0, 0);
+      holder.button.setPadding(0, 200, 0, 0);
     } else {
       holder.button.setPadding(0, 0, 0, 0);
     }

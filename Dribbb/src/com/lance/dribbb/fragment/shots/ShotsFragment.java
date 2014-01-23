@@ -54,7 +54,7 @@ public class ShotsFragment extends Fragment {
         }
         if(firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && totalItemCount != 2 && adapter.getCount() > 0) {
           setCurrentUrl();
-          data.getShotsRefresh(currentUrl + getCurrentPage(), gridView, adapter, footerState);
+          data.getShotsRefresh(currentUrl + getCurrentPage(), adapter, footerState);
           footerState.setState(FooterState.State.Loading);
           Log.i("GRIDVIEW", "BOTTOM");
         }
@@ -67,11 +67,11 @@ public class ShotsFragment extends Fragment {
   
   private void initGridView(int index, int page, GridView gridView) {
     if(index == 0){
-      data.getShotsRefresh(DribbbleAPI.SHOTS_DEBUTS + page, gridView, adapter, footerState);
+      data.getShotsRefresh(DribbbleAPI.SHOTS_DEBUTS + page, adapter, footerState);
     } else if (index == 1) {
-      data.getShotsRefresh(DribbbleAPI.SHOTS_POPULAR + page, gridView, adapter, footerState);
+      data.getShotsRefresh(DribbbleAPI.SHOTS_POPULAR + page, adapter, footerState);
     } else {
-      data.getShotsRefresh(DribbbleAPI.SHOTS_EVERYONE + page, gridView, adapter, footerState);
+      data.getShotsRefresh(DribbbleAPI.SHOTS_EVERYONE + page, adapter, footerState);
     }
   }
   
@@ -94,36 +94,6 @@ public class ShotsFragment extends Fragment {
       currentUrl = DribbbleAPI.SHOTS_POPULAR;
     }
   }
-
-/*  @Override
-  public void onRefresh(PullToRefreshBase<GridView> refreshView) {
-    new GetDataTask((PullToRefreshGridView)refreshView, getCurrentPage()).execute();
-  }*/
-  
-  /*private class GetDataTask extends AsyncTask<Void, Void, String[]> {
-    
-    GridView gridView;
-    int page = 1;
-    
-    public GetDataTask(GridView gView, int p) {
-      gridView = gView;
-      page = p; 
-    }
-
-    @Override
-    protected String[] doInBackground(Void... params) {
-      data.getShotsRefresh(currentUrl + page, gridView, adapter);
-      footerState.setState(FooterState.State.Loading);
-      return null;
-    }
-    
-    @Override
-    protected void onPostExecute(String[] result) {
-      super.onPostExecute(result);
-      footerState.setState(FooterState.State.Idle);
-    }
-    
-  }*/
   
   @Override
   public void onStop() {
