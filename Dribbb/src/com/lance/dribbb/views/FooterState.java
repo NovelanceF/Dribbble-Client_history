@@ -9,7 +9,6 @@ public class FooterState {
   }
   
   public FooterState() {
-    setState(State.Idle);
   }
   
   public State getState() {

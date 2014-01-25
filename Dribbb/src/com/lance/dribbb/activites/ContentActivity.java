@@ -24,6 +24,7 @@ import com.lance.dribbb.R;
 import com.lance.dribbb.animation.ZoomOutPageTransformer;
 import com.lance.dribbb.fragment.shots.Drawer;
 import com.lance.dribbb.fragment.shots.ShotsFragment;
+import com.lance.dribbb.network.DribbbleAPI;
 
 public class ContentActivity extends FragmentActivity implements OnPageChangeListener {
   
@@ -59,7 +60,7 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
     mDrawerLayout.setDrawerListener(mDrawerToggle);
     
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.left_drawer, new Drawer())
+        .replace(R.id.left_drawer, new Drawer(ContentActivity.this))
         .commit();
     
   }
@@ -110,7 +111,8 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
 
     @Override
     public Fragment getItem(int arg0) {
-      return new ShotsFragment(arg0, ContentActivity.this);
+      String urls[] = {DribbbleAPI.SHOTS_DEBUTS, DribbbleAPI.SHOTS_POPULAR, DribbbleAPI.SHOTS_EVERYONE};
+      return new ShotsFragment(ContentActivity.this, urls[arg0], 200);
     }
 
     @Override

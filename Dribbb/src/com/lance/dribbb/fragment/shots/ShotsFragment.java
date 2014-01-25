@@ -1,5 +1,6 @@
 package com.lance.dribbb.fragment.shots;
 
+import android.R.integer;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,17 +22,16 @@ import com.lance.dribbb.views.FooterState;
 
 public class ShotsFragment extends Fragment {
   
-  private int m;
   private ShotsData data;
   private static int pageDebut = 1, pagePopular = 1, pageEveryone = 1;
   private static String currentUrl = null;
   private ContentShotsAdapter adapter;
   final FooterState footerState = new FooterState();
   
-  public ShotsFragment(int index, Activity a) {
-    m = index;
+  public ShotsFragment(Activity a, String Url, int padding) {
     data = new ShotsData(a);
-    adapter = new ContentShotsAdapter(a, data.getList());
+    adapter = new ContentShotsAdapter(a, data.getList(), padding);
+    currentUrl =Url;
   }
   
   @Override
@@ -53,45 +53,29 @@ public class ShotsFragment extends Fragment {
           return;
         }
         if(firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && totalItemCount != 2 && adapter.getCount() > 0) {
-          setCurrentUrl();
-          data.getShotsRefresh(currentUrl + getCurrentPage(), adapter, footerState);
           footerState.setState(FooterState.State.Loading);
+          data.getShotsRefresh(currentUrl + getCurrentPage(), adapter, footerState);
+          adapter.notifyDataSetChanged();
           Log.i("GRIDVIEW", "BOTTOM");
         }
       }
     });
     
-    initGridView(m, 1, gridView);
+    initGridView(1, gridView);
     return rootView;
   }
   
-  private void initGridView(int index, int page, GridView gridView) {
-    if(index == 0){
-      data.getShotsRefresh(DribbbleAPI.SHOTS_DEBUTS + page, adapter, footerState);
-    } else if (index == 1) {
-      data.getShotsRefresh(DribbbleAPI.SHOTS_POPULAR + page, adapter, footerState);
-    } else {
-      data.getShotsRefresh(DribbbleAPI.SHOTS_EVERYONE + page, adapter, footerState);
-    }
+  private void initGridView(int page, GridView gridView) {
+      data.getShotsRefresh(currentUrl + page, adapter, footerState);
   }
   
   private int getCurrentPage(){
-    if(m == 0){
+    if(currentUrl.equals(DribbbleAPI.SHOTS_DEBUTS)){
       return ++ pageDebut;
-    } else if (m == 2) {
+    } else if (currentUrl.equals(DribbbleAPI.SHOTS_POPULAR)) {
       return ++ pagePopular;
     } else {
       return ++ pageEveryone;
-    }
-  }
-  
-  private void setCurrentUrl() {
-    if(m == 0){
-      currentUrl = DribbbleAPI.SHOTS_DEBUTS;
-    } else if (m == 2) {
-      currentUrl = DribbbleAPI.SHOTS_EVERYONE;
-    } else {
-      currentUrl = DribbbleAPI.SHOTS_POPULAR;
     }
   }
   

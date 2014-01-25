@@ -40,6 +40,10 @@
             android:name="com.lance.dribbb.activites.PlayerActivity"
             android:label="@string/title_activity_player" >
         </activity>
+        <activity
+            android:name="com.lance.dribbb.activites.UActivity"
+            android:label="@string/title_activity_u" >
+        </activity>
     </application>
 
 </manifest>

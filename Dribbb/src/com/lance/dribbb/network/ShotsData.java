@@ -9,7 +9,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.integer;
 import android.app.Activity;
+import android.hardware.Camera.Size;
 import android.util.Log;
 import android.widget.GridView;
 
@@ -26,6 +28,7 @@ public class ShotsData {
 
   private RequestQueue mRequestQueue;
   private List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+  private static int size;
   
   public ShotsData(Activity a) {
     mRequestQueue = Volley.newRequestQueue(a);
@@ -43,8 +46,8 @@ public class ShotsData {
           public void onResponse(JSONObject arg0) {
             try {
               initShotsList(arg0);
-              adapter.notifyDataSetChanged();
               f.setState(FooterState.State.Idle);
+              adapter.notifyDataSetChanged();
             } catch (JSONException e) {
               e.printStackTrace();
             }
@@ -61,6 +64,7 @@ public class ShotsData {
 
   private void initShotsList(JSONObject jsonObject) throws JSONException {
     int respond_count = jsonObject.getInt("per_page");
+    int totalPages = jsonObject.getInt("page");
     JSONArray array = jsonObject.getJSONArray("shots");
     for (int i = 0; i < respond_count; i++) {
       Map<String, Object> map = new HashMap<String, Object>();
@@ -77,6 +81,15 @@ public class ShotsData {
       map.put("player_name", array.getJSONObject(i).getJSONObject("player").getString("name").toString());
       map.put("player_avatar_url", array.getJSONObject(i).getJSONObject("player").getString("avatar_url").toString());
       list.add(map);
+      
+      if(respond_count * (totalPages - 1) + i + 1 == size) {
+        break;
+      }
     }
+    size = jsonObject.getInt("total");
+  }
+ 
+  public static int getSize(){
+    return size;
   }
 }

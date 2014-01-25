@@ -5,6 +5,7 @@
     </issue>
     <issue id="ValidFragment">
         <ignore path="src/com/lance/dribbb/fragment/content/ShotsFragment.java" />
+        <ignore path="src/com/lance/dribbb/fragment/shots/Drawer.java" />
         <ignore path="src/com/lance/dribbb/fragment/shots/ShotsFragment.java" />
     </issue>
 </lint>

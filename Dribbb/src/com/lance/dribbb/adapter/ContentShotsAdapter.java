@@ -5,9 +5,11 @@ import java.util.Map;
 
 import javax.crypto.interfaces.PBEKey;
 
+import android.R.integer;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ import com.lance.dribbb.R;
 import com.lance.dribbb.activites.ContentActivity;
 import com.lance.dribbb.application.AppData;
 import com.lance.dribbb.network.BitmapLruCache;
+import com.lance.dribbb.network.ShotsData;
+import com.lance.dribbb.views.FooterState;
 
 public class ContentShotsAdapter extends BaseAdapter{
   
@@ -34,13 +38,14 @@ public class ContentShotsAdapter extends BaseAdapter{
   private LayoutInflater mInflater;
   private RequestQueue mRequestQueue;
   private ImageLoader mImageLoader;
+  private int padding;
   
-  public ContentShotsAdapter(Activity c, List<Map<String, Object>> list) {
+  public ContentShotsAdapter(Activity c, List<Map<String, Object>> list, int p) {
     this.mActivity = c;
     mList = list;
     mInflater = LayoutInflater.from(c);
     mRequestQueue = Volley.newRequestQueue(mActivity);
-    
+    padding = p;
     mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache());
   }
 
@@ -76,12 +81,14 @@ public class ContentShotsAdapter extends BaseAdapter{
     
     if(position == 0 || position == 1 || position == 2) {
       holder.button.setVisibility(View.VISIBLE);
-      holder.button.setPadding(0, 200, 0, 0);
+      holder.button.setPadding(0, padding, 0, 0);
     } else {
       holder.button.setPadding(0, 0, 0, 0);
     }
-    
-    if(position == mList.size() - 3 || position == mList.size() - 2 || position == mList.size() - 1) {
+    FooterState state = new FooterState();
+    if((position == mList.size() - 3 || position == mList.size() - 2 || position == mList.size() - 1) 
+        //&& state.getState() == FooterState.State.Loading
+        && !listEnd()) {
       holder.pb.setVisibility(View.VISIBLE);
     } else {
       holder.pb.setVisibility(View.GONE);
@@ -97,6 +104,15 @@ public class ContentShotsAdapter extends BaseAdapter{
     public NetworkImageView shotsImage;
     public ImageView button;
     public ProgressBar pb;
+  }
+  
+  private boolean listEnd() {
+    if(getCount() == ShotsData.getSize()) {
+      Log.i("isListEnd", "YES");
+    } else {
+      Log.i("isListEnd", "False");
+    }
+    return getCount() == ShotsData.getSize();
   }
   
   private android.view.ViewGroup.LayoutParams getParams(Holder holder){

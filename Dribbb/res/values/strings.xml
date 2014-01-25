@@ -9,5 +9,6 @@
     <string name="title_activity_content">ContentActivity</string>
     <string name="title_activity_guide">GuideActivity</string>
     <string name="title_activity_player">PlayerActivity</string>
+    <string name="title_activity_u">UActivity</string>
 
 </resources>

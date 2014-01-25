@@ -3,16 +3,22 @@ package com.lance.dribbb.adapter;
 import java.util.List;
 import java.util.Map;
 
+import android.R.integer;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.lance.dribbb.R;
+import com.lance.dribbb.network.BitmapLruCache;
 
 public class DrawerAdapter extends BaseAdapter {
   
@@ -20,12 +26,18 @@ public class DrawerAdapter extends BaseAdapter {
   private LayoutInflater mInflater;
   private List<Map<String, Object>> mList;
   private Typeface typeface;
+  private SharedPreferences userInfo;
+  private RequestQueue mRequestQueue;
+  private ImageLoader mImageLoader;
   
   public DrawerAdapter(Activity a, List<Map<String, Object>> list) {
     mActivity = a;
     mInflater = LayoutInflater.from(a);
     mList = list;
     typeface = Typeface.createFromAsset(a.getAssets(), "font/Roboto-Light.ttf");
+    userInfo = a.getSharedPreferences("user_info", 0);
+    mRequestQueue = Volley.newRequestQueue(mActivity);
+    mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache());
   }
 
   @Override
@@ -50,7 +62,7 @@ public class DrawerAdapter extends BaseAdapter {
       if(convertView == null) {
         convertView = mInflater.inflate(R.layout.item_user, null);
         holder = new Holder1();
-        holder.userAvatar = (ImageView)convertView.findViewById(R.id.item_user_avatar);
+        holder.userAvatar = (NetworkImageView)convertView.findViewById(R.id.item_user_avatar);
         holder.userInfo1 = (TextView)convertView.findViewById(R.id.item_user_info);
         holder.userInfo2 = (TextView)convertView.findViewById(R.id.item_user_info2);
         convertView.setTag(holder);
@@ -58,10 +70,14 @@ public class DrawerAdapter extends BaseAdapter {
         holder = (Holder1)convertView.getTag();
       }
       
-      holder.userAvatar.setImageResource((Integer) mList.get(position).get("user_avatar"));
-      holder.userInfo1.setText(mList.get(position).get("user_info1").toString());
+      if(userInfo.getString("avatar_url", "") == "") {
+        //holder.userAvatar.setImageResource(R.drawable.player_unconnected);
+      } else {
+        holder.userAvatar.setImageUrl(userInfo.getString("avatar_url", "").toString(), mImageLoader);
+      }
+      holder.userInfo1.setText(userInfo.getString("name", "Tap to connect").toString());
       holder.userInfo1.setTypeface(typeface);
-      holder.userInfo2.setText(mList.get(position).get("user_info2").toString());
+      holder.userInfo2.setText(userInfo.getString("Followings", "to your Dribbble account").toString());
       holder.userInfo2.setTypeface(typeface);
       
     } else {
@@ -83,7 +99,7 @@ public class DrawerAdapter extends BaseAdapter {
   }
   
   private static class Holder1 {
-    ImageView userAvatar;
+    NetworkImageView userAvatar;
     TextView userInfo1;
     TextView userInfo2;
   }
