@@ -26,10 +26,11 @@ public class UActivity extends FragmentActivity {
     
     setActionBarStyle();
     
-    getSupportFragmentManager().beginTransaction()
-        .add(R.id.container, new ShotsFragment(UActivity.this, getIntent().getExtras().getString("url"), 120))
-        .commit();
-    Log.i("url", getIntent().getExtras().getString("url"));
+    if(getIntent() != null) {
+      getSupportFragmentManager().beginTransaction()
+          .add(R.id.container, new ShotsFragment(UActivity.this, getIntent().getExtras().getString("url"), 120))
+          .commit();
+    }
   }
 
   @Override

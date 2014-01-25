@@ -13,6 +13,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,11 +76,12 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
   public boolean onOptionsItemSelected(MenuItem item) {
       int id = item.getItemId();
       if (id == R.id.action_settings) {
-          return true;
+        contentPager.setAdapter(adapter);
+        return true;
       }
 
       if (mDrawerToggle.onOptionsItemSelected(item)) {
-          return true;
+        return true;
       }
       return super.onOptionsItemSelected(item);
   }

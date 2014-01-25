@@ -23,15 +23,15 @@ import com.lance.dribbb.views.FooterState;
 public class ShotsFragment extends Fragment {
   
   private ShotsData data;
-  private static int pageDebut = 1, pagePopular = 1, pageEveryone = 1;
-  private static String currentUrl = null;
+  private static int pageDebut = 1, pagePopular = 1, pageEveryone = 1, page = 1;
+  private String currentUrl = null;
   private ContentShotsAdapter adapter;
   final FooterState footerState = new FooterState();
   
   public ShotsFragment(Activity a, String Url, int padding) {
     data = new ShotsData(a);
+    currentUrl = Url;
     adapter = new ContentShotsAdapter(a, data.getList(), padding);
-    currentUrl =Url;
   }
   
   @Override
@@ -54,7 +54,7 @@ public class ShotsFragment extends Fragment {
         }
         if(firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && totalItemCount != 2 && adapter.getCount() > 0) {
           footerState.setState(FooterState.State.Loading);
-          data.getShotsRefresh(currentUrl + getCurrentPage(), adapter, footerState);
+          data.getShotsRefresh(currentUrl, getCurrentPage(), adapter, footerState);
           adapter.notifyDataSetChanged();
           Log.i("GRIDVIEW", "BOTTOM");
         }
@@ -66,7 +66,7 @@ public class ShotsFragment extends Fragment {
   }
   
   private void initGridView(int page, GridView gridView) {
-      data.getShotsRefresh(currentUrl + page, adapter, footerState);
+    data.getShotsRefresh(currentUrl, page, adapter, footerState);
   }
   
   private int getCurrentPage(){
@@ -74,14 +74,16 @@ public class ShotsFragment extends Fragment {
       return ++ pageDebut;
     } else if (currentUrl.equals(DribbbleAPI.SHOTS_POPULAR)) {
       return ++ pagePopular;
-    } else {
+    } else if (currentUrl.equals(DribbbleAPI.SHOTS_EVERYONE)){
       return ++ pageEveryone;
+    } else {
+      return ++ page;
     }
   }
   
   @Override
   public void onStop() {
-    pageDebut = pageEveryone = pagePopular = 1;
+    page = pageDebut = pageEveryone = pagePopular = 1;
     super.onStop();
   }
 

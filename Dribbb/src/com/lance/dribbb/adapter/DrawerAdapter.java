@@ -77,7 +77,8 @@ public class DrawerAdapter extends BaseAdapter {
       }
       holder.userInfo1.setText(userInfo.getString("name", "Tap to connect").toString());
       holder.userInfo1.setTypeface(typeface);
-      holder.userInfo2.setText(userInfo.getString("Followings", "to your Dribbble account").toString());
+      String userInfo2 = userInfo.getString("Followings", "to your Dribbble account").toString() + userInfo.getString("likesReceived", "").toString();
+      holder.userInfo2.setText(userInfo2);
       holder.userInfo2.setTypeface(typeface);
       
     } else {
@@ -91,6 +92,9 @@ public class DrawerAdapter extends BaseAdapter {
         holder = (Holder2)convertView.getTag();
       }
       
+      if(userInfo.getString("avatar_url", "null").equals("null") && position == 0 || position == 1) {
+        holder.itemText.setTextColor(0xFF454545);
+      }
       holder.itemText.setText(mList.get(position).get("drawer_items").toString());
       holder.itemText.setTypeface(typeface);
       

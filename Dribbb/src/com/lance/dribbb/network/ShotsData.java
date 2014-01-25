@@ -27,19 +27,21 @@ import com.lance.dribbb.views.FooterState;
 public class ShotsData {
 
   private RequestQueue mRequestQueue;
-  private List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+  List<Map<String, Object>> list;
   private static int size;
   
   public ShotsData(Activity a) {
+    
     mRequestQueue = Volley.newRequestQueue(a);
+    list = new ArrayList<Map<String,Object>>();
   }
   
   public List<Map<String, Object>> getList() {
-    return list;
+      return list;
   }
   
-  public void getShotsRefresh(String url, final ContentShotsAdapter adapter, final FooterState f) {
-    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, 
+  public void getShotsRefresh(final String url, final int page, final ContentShotsAdapter adapter, final FooterState f) {
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url + page, null, 
         new Response.Listener<JSONObject>() {
 
           @Override
@@ -80,7 +82,7 @@ public class ShotsData {
       //player
       map.put("player_name", array.getJSONObject(i).getJSONObject("player").getString("name").toString());
       map.put("player_avatar_url", array.getJSONObject(i).getJSONObject("player").getString("avatar_url").toString());
-      list.add(map);
+      getList().add(map);
       
       if(respond_count * (totalPages - 1) + i + 1 == size) {
         break;

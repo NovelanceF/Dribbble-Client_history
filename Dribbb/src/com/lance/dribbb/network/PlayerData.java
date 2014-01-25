@@ -85,8 +85,8 @@ public class PlayerData {
     //map.put("user_info1", jsonObject.getString("name").toString());
     userInfo.edit().putString("name", jsonObject.getString("name").toString()).commit();
     //map.put("user_info2", jsonObject.getString("following_count").toString());
-    userInfo.edit().putString("Followings", jsonObject.getString("following_count").toString()).commit();
-
+    userInfo.edit().putString("Followings", jsonObject.getString("following_count").toString() + " Followers, ").commit();
+    userInfo.edit().putString("likesReceived", jsonObject.getString("likes_received_count").toString() + " Likes received.").commit();
   }
 
 }

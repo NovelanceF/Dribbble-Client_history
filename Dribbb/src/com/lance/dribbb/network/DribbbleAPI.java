@@ -15,5 +15,9 @@ public class DribbbleAPI {
   public static String getuserLikesUel(String username) {
     return "http://api.dribbble.com/players/" + username + "/shots/likes/?page=";
   }
+  
+  public static String getUserUrl(String username) {
+    return "http://api.dribbble.com/players/" + username;
+  }
 
 }

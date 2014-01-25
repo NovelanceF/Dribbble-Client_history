@@ -55,13 +55,18 @@ public class Drawer extends Fragment {
         Bundle bundle = new Bundle();
         if(arg2 == 0) {
           initDialog(getActivity());
-        } else if (arg2 == 1) {
-          bundle.putString("url", DribbbleAPI.getUserFollowingUrl(userInfo.getString("username", "")));
-        } else if (arg2 == 2) {
-          bundle.putString("url", DribbbleAPI.getuserLikesUel(userInfo.getString("username", "")));
         }
-        intent.putExtras(bundle);
-        getActivity().startActivity(intent);
+        if(!userInfo.getString("avatar_url", "").equals("")) {
+          if (arg2 == 1) {
+            bundle.putString("url", DribbbleAPI.getUserFollowingUrl(userInfo.getString("username", "")));
+            intent.putExtras(bundle);
+            getActivity().startActivity(intent);
+          } else if (arg2 == 2) {
+            bundle.putString("url", DribbbleAPI.getuserLikesUel(userInfo.getString("username", "")));
+            intent.putExtras(bundle);
+            getActivity().startActivity(intent);
+          }
+        }
         getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
       }
     });;
@@ -85,7 +90,7 @@ public class Drawer extends Fragment {
           public void onClick(DialogInterface dialog, int which) {
             if(editText.getText().toString() != "") {
               userInfo.edit().putString("username", editText.getText().toString()).commit();
-              data.getPlayerInfo("http://api.dribbble.com/players/" + userInfo.getString("username", ""), adapter);
+              data.getPlayerInfo(DribbbleAPI.getUserUrl(userInfo.getString("username", "")), adapter);
             }
           }
         }).setNegativeButton("Cancel", null).show();
