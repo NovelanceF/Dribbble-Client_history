@@ -1,5 +1,6 @@
 package com.lance.dribbb.activites;
 
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,12 +17,11 @@ import com.lance.dribbb.R;
 import com.lance.dribbb.fragment.shots.ShotsFragment;
 import com.lance.dribbb.views.FooterState;
 
-public class UActivity extends FragmentActivity {
+public class UActivity extends SwipeBackActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
     setContentView(R.layout.activity_u);
     
     setActionBarStyle();

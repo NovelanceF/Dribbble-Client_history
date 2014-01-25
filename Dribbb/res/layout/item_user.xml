@@ -7,9 +7,9 @@
     <com.android.volley.toolbox.NetworkImageView 
         android:id="@+id/item_user_avatar"
         android:layout_width="67dp"
-        android:layout_height="60dp"
-        android:src="@drawable/player_unconnected"
-        android:background="@drawable/player_unconnected"
+        android:layout_height="67dp"
+        android:background="#dd232323"
+        android:padding="4dp"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="7dp"/>
     
@@ -28,7 +28,7 @@
         android:text="to your Dribbble account"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="48dp"
         android:textSize="14sp"/>
 
 </LinearLayout>

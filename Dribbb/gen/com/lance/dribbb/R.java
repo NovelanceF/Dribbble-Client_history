@@ -16,6 +16,33 @@ public final class R {
         public static final int trans2=0x7f040004;
     }
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int SwipeBackLayoutStyle=0x7f010010;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+<tr><td><code>bottom</code></td><td>2</td><td></td></tr>
+<tr><td><code>all</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int edge_flag=0x7f01000c;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int edge_size=0x7f01000b;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -113,9 +140,21 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int pstsUnderlineHeight=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int shadow_bottom=0x7f01000f;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int shadow_left=0x7f01000d;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int shadow_right=0x7f01000e;
     }
     public static final class color {
-        public static final int background_tab_pressed=0x7f050000;
+        public static final int background_tab_pressed=0x7f060000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -124,11 +163,11 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
-        public static final int actionbar_back=0x7f020010;
+        public static final int actionbar_back=0x7f020013;
         public static final int actionbar_tab_indicator=0x7f020000;
         public static final int background_tabs=0x7f020001;
         public static final int default_ptr_flip=0x7f020002;
@@ -140,45 +179,53 @@ containing a value of this type.
         public static final int ic_view=0x7f020008;
         public static final int itembackground=0x7f020009;
         public static final int player_unconnected=0x7f02000a;
-        public static final int tab_selected=0x7f020011;
-        public static final int tab_selected_focused=0x7f020015;
-        public static final int tab_selected_pressed=0x7f020013;
-        public static final int tab_unselected=0x7f020012;
-        public static final int tab_unselected_focused=0x7f020016;
-        public static final int tab_unselected_pressed=0x7f020014;
-        public static final int welcome1=0x7f02000b;
-        public static final int welcome2=0x7f02000c;
-        public static final int welcome3=0x7f02000d;
-        public static final int welcome4=0x7f02000e;
-        public static final int welcomeback=0x7f02000f;
+        public static final int shadow_bottom=0x7f02000b;
+        public static final int shadow_left=0x7f02000c;
+        public static final int shadow_right=0x7f02000d;
+        public static final int tab_selected=0x7f020014;
+        public static final int tab_selected_focused=0x7f020018;
+        public static final int tab_selected_pressed=0x7f020016;
+        public static final int tab_unselected=0x7f020015;
+        public static final int tab_unselected_focused=0x7f020019;
+        public static final int tab_unselected_pressed=0x7f020017;
+        public static final int welcome1=0x7f02000e;
+        public static final int welcome2=0x7f02000f;
+        public static final int welcome3=0x7f020010;
+        public static final int welcome4=0x7f020011;
+        public static final int welcomeback=0x7f020012;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0019;
-        public static final int container=0x7f0a0007;
-        public static final int content_decorations=0x7f0a0002;
-        public static final int content_drawer=0x7f0a0000;
-        public static final int content_pager=0x7f0a0001;
-        public static final int drawer_list=0x7f0a0009;
-        public static final int first_image=0x7f0a0016;
-        public static final int forth_image=0x7f0a0014;
-        public static final int gird_loading=0x7f0a000e;
-        public static final int hhhhh=0x7f0a000c;
-        public static final int item_text=0x7f0a000b;
-        public static final int item_user_avatar=0x7f0a000f;
-        public static final int item_user_info=0x7f0a0010;
-        public static final int item_user_info2=0x7f0a0011;
-        public static final int left_drawer=0x7f0a0004;
-        public static final int mstart=0x7f0a0015;
-        public static final int page_num=0x7f0a0006;
-        public static final int progressBar=0x7f0a0012;
-        public static final int second_image=0x7f0a0018;
-        public static final int shots_grid=0x7f0a000a;
-        public static final int shots_item_image=0x7f0a000d;
-        public static final int tabs=0x7f0a0003;
-        public static final int textView=0x7f0a0013;
-        public static final int third_image=0x7f0a0017;
-        public static final int user_account=0x7f0a0008;
-        public static final int viewpager=0x7f0a0005;
+        public static final int action_settings=0x7f05001e;
+        public static final int all=0x7f050003;
+        public static final int bottom=0x7f050002;
+        public static final int container=0x7f05000b;
+        public static final int content_decorations=0x7f050006;
+        public static final int content_drawer=0x7f050004;
+        public static final int content_pager=0x7f050005;
+        public static final int drawer_list=0x7f05000d;
+        public static final int first_image=0x7f05001b;
+        public static final int forth_image=0x7f050019;
+        public static final int gird_loading=0x7f050012;
+        public static final int hhhhh=0x7f050010;
+        public static final int item_text=0x7f05000f;
+        public static final int item_user_avatar=0x7f050013;
+        public static final int item_user_info=0x7f050014;
+        public static final int item_user_info2=0x7f050015;
+        public static final int left=0x7f050000;
+        public static final int left_drawer=0x7f050008;
+        public static final int mstart=0x7f05001a;
+        public static final int page_num=0x7f05000a;
+        public static final int progressBar=0x7f050016;
+        public static final int right=0x7f050001;
+        public static final int second_image=0x7f05001d;
+        public static final int shots_grid=0x7f05000e;
+        public static final int shots_item_image=0x7f050011;
+        public static final int swipe=0x7f050018;
+        public static final int tabs=0x7f050007;
+        public static final int textView=0x7f050017;
+        public static final int third_image=0x7f05001c;
+        public static final int user_account=0x7f05000c;
+        public static final int viewpager=0x7f050009;
     }
     public static final class layout {
         public static final int actioncar_view=0x7f030000;
@@ -194,31 +241,32 @@ containing a value of this type.
         public static final int item_shots_layout=0x7f03000a;
         public static final int item_user=0x7f03000b;
         public static final int loading_footer=0x7f03000c;
-        public static final int views_four=0x7f03000d;
-        public static final int views_one=0x7f03000e;
-        public static final int views_three=0x7f03000f;
-        public static final int views_two=0x7f030010;
+        public static final int swipeback_layout=0x7f03000d;
+        public static final int views_four=0x7f03000e;
+        public static final int views_one=0x7f03000f;
+        public static final int views_three=0x7f030010;
+        public static final int views_two=0x7f030011;
     }
     public static final class menu {
-        public static final int content=0x7f090000;
-        public static final int guide=0x7f090001;
-        public static final int main=0x7f090002;
-        public static final int player=0x7f090003;
-        public static final int u=0x7f090004;
+        public static final int content=0x7f0a0000;
+        public static final int guide=0x7f0a0001;
+        public static final int main=0x7f0a0002;
+        public static final int player=0x7f0a0003;
+        public static final int u=0x7f0a0004;
     }
     public static final class string {
-        public static final int action_settings=0x7f070004;
-        public static final int app_name=0x7f070003;
-        public static final int drawer_close=0x7f070007;
-        public static final int drawer_open=0x7f070006;
-        public static final int hello_world=0x7f070005;
-        public static final int pull_to_refresh_pull_label=0x7f070000;
-        public static final int pull_to_refresh_refreshing_label=0x7f070002;
-        public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int title_activity_content=0x7f070008;
-        public static final int title_activity_guide=0x7f070009;
-        public static final int title_activity_player=0x7f07000a;
-        public static final int title_activity_u=0x7f07000b;
+        public static final int action_settings=0x7f080004;
+        public static final int app_name=0x7f080003;
+        public static final int drawer_close=0x7f080007;
+        public static final int drawer_open=0x7f080006;
+        public static final int hello_world=0x7f080005;
+        public static final int pull_to_refresh_pull_label=0x7f080000;
+        public static final int pull_to_refresh_refreshing_label=0x7f080002;
+        public static final int pull_to_refresh_release_label=0x7f080001;
+        public static final int title_activity_content=0x7f080008;
+        public static final int title_activity_guide=0x7f080009;
+        public static final int title_activity_player=0x7f08000a;
+        public static final int title_activity_u=0x7f08000b;
     }
     public static final class style {
         /** 
@@ -241,14 +289,15 @@ containing a value of this type.
         res/values-v11/styles.xml on API 14+ devices.
     
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f090001;
         /**  tab indicator 
          */
-        public static final int MyActionBarTabs=0x7f080002;
+        public static final int MyActionBarTabs=0x7f090002;
+        public static final int SwipeBackLayout=0x7f090003;
     }
     public static final class styleable {
         /** Attributes that can be used with a PagerSlidingTabStrip.
@@ -449,5 +498,92 @@ containing a value of this type.
           @attr name com.lance.dribbb:pstsUnderlineHeight
         */
         public static final int PagerSlidingTabStrip_pstsUnderlineHeight = 4;
+        /** Attributes that can be used with a SwipeBackLayout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SwipeBackLayout_edge_flag com.lance.dribbb:edge_flag}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeBackLayout_edge_size com.lance.dribbb:edge_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeBackLayout_shadow_bottom com.lance.dribbb:shadow_bottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeBackLayout_shadow_left com.lance.dribbb:shadow_left}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeBackLayout_shadow_right com.lance.dribbb:shadow_right}</code></td><td></td></tr>
+           </table>
+           @see #SwipeBackLayout_edge_flag
+           @see #SwipeBackLayout_edge_size
+           @see #SwipeBackLayout_shadow_bottom
+           @see #SwipeBackLayout_shadow_left
+           @see #SwipeBackLayout_shadow_right
+         */
+        public static final int[] SwipeBackLayout = {
+            0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e,
+            0x7f01000f
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.lance.dribbb.R.attr#edge_flag}
+          attribute's value can be found in the {@link #SwipeBackLayout} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+<tr><td><code>bottom</code></td><td>2</td><td></td></tr>
+<tr><td><code>all</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name com.lance.dribbb:edge_flag
+        */
+        public static final int SwipeBackLayout_edge_flag = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.lance.dribbb.R.attr#edge_size}
+          attribute's value can be found in the {@link #SwipeBackLayout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.lance.dribbb:edge_size
+        */
+        public static final int SwipeBackLayout_edge_size = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.lance.dribbb.R.attr#shadow_bottom}
+          attribute's value can be found in the {@link #SwipeBackLayout} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.lance.dribbb:shadow_bottom
+        */
+        public static final int SwipeBackLayout_shadow_bottom = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.lance.dribbb.R.attr#shadow_left}
+          attribute's value can be found in the {@link #SwipeBackLayout} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.lance.dribbb:shadow_left
+        */
+        public static final int SwipeBackLayout_shadow_left = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.lance.dribbb.R.attr#shadow_right}
+          attribute's value can be found in the {@link #SwipeBackLayout} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.lance.dribbb:shadow_right
+        */
+        public static final int SwipeBackLayout_shadow_right = 3;
     };
 }

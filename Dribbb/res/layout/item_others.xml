@@ -7,7 +7,7 @@
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#aaffffff"></LinearLayout>
+        android:background="#88ffffff"></LinearLayout>
     
     <TextView 
         android:id="@+id/item_text"

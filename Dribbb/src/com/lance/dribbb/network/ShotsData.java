@@ -40,8 +40,8 @@ public class ShotsData {
       return list;
   }
   
-  public void getShotsRefresh(final String url, final int page, final ContentShotsAdapter adapter, final FooterState f) {
-    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url + page, null, 
+  public void getShotsRefresh(final String url, final ContentShotsAdapter adapter, final FooterState f) {
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, 
         new Response.Listener<JSONObject>() {
 
           @Override

@@ -92,8 +92,10 @@ public class DrawerAdapter extends BaseAdapter {
         holder = (Holder2)convertView.getTag();
       }
       
-      if(userInfo.getString("avatar_url", "null").equals("null") && position == 0 || position == 1) {
+      if(userInfo.getString("avatar_url", "null").equals("null") && position != 3) {
         holder.itemText.setTextColor(0xFF454545);
+      } else {
+        holder.itemText.setTextColor(0xFFdfdfdf);
       }
       holder.itemText.setText(mList.get(position).get("drawer_items").toString());
       holder.itemText.setTypeface(typeface);

@@ -38,7 +38,6 @@ public class ContentActivity extends FragmentActivity implements OnPageChangeLis
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
     setContentView(R.layout.activity_content);
     
     setPager();

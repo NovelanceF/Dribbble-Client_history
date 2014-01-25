@@ -54,7 +54,7 @@ public class ShotsFragment extends Fragment {
         }
         if(firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount != 0 && totalItemCount != 2 && adapter.getCount() > 0) {
           footerState.setState(FooterState.State.Loading);
-          data.getShotsRefresh(currentUrl, getCurrentPage(), adapter, footerState);
+          data.getShotsRefresh(currentUrl + getCurrentPage(), adapter, footerState);
           adapter.notifyDataSetChanged();
           Log.i("GRIDVIEW", "BOTTOM");
         }
@@ -66,7 +66,7 @@ public class ShotsFragment extends Fragment {
   }
   
   private void initGridView(int page, GridView gridView) {
-    data.getShotsRefresh(currentUrl, page, adapter, footerState);
+    data.getShotsRefresh(currentUrl + page, adapter, footerState);
   }
   
   private int getCurrentPage(){
